@@ -150,6 +150,12 @@ String ActivityName = "";
                         }
                         break;
                     }
+
+                    case R.id.item_logout: {
+
+
+                        break;
+                    }
                 }
                 return false;
             }
