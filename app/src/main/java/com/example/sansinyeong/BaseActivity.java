@@ -82,7 +82,7 @@ String ActivityName = "";
                         //String의 비교는 .equals!!!!!! ==이랑 헷갈리지 말자!!!
                         switch (ActivityName){
                             case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -93,7 +93,7 @@ String ActivityName = "";
                             }
 
                             default: {
-                                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
