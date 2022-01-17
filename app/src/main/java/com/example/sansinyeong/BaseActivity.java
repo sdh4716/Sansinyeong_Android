@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class BaseActivity extends AppCompatActivity {
 
 String ActivityName = "";
 
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ String ActivityName = "";
 
         Log.d("AcName",ActivityName);
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
     }
@@ -152,8 +156,10 @@ String ActivityName = "";
                     }
 
                     case R.id.item_logout: {
-
-
+                        Toast.makeText(getApplicationContext(),"로그아웃 되었습니다", Toast.LENGTH_LONG).show();
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                         break;
                     }
                 }
