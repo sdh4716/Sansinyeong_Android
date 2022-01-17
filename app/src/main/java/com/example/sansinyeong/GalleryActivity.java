@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sansinyeong.Adapter.GalleryAdapter;
+import com.example.sansinyeong.adapter.GalleryAdapter;
 
 import java.util.ArrayList;
 

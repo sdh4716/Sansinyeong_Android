@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.sansinyeong.Camera;
+package com.example.sansinyeong.camera;
 
 import android.Manifest;
 import android.app.Activity;
@@ -60,7 +60,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.sansinyeong.R;
-import com.example.sansinyeong.Camera.AutoFitTextureView;
 
 import java.io.File;
 import java.io.FileOutputStream;

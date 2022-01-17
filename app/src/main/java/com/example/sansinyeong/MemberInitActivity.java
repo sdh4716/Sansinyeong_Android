@@ -13,10 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
-import com.example.sansinyeong.BaseActivity;
-import com.example.sansinyeong.Camera.CameraActivity;
-import com.example.sansinyeong.UserInfo;
-import com.example.sansinyeong.R;
+import com.example.sansinyeong.camera.CameraActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ------ Google 로그인 start ------
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.client_id_web))
                 .requestEmail()
                 .build();
 

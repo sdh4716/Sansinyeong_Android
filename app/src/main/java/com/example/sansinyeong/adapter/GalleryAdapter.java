@@ -1,4 +1,4 @@
-package com.example.sansinyeong.Adapter;
+package com.example.sansinyeong.adapter;
 
 import static com.example.sansinyeong.Util.INTENT_PATH;
 

@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="#ff0000"
-            android:text="sos" />
+            android:text="긴급 구조 요청 메시지 전송" />
 
     </LinearLayout>
     </LinearLayout>

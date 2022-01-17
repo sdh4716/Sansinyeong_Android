@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.sansinyeong.Camera;
+package com.example.sansinyeong.camera;
 
 import android.content.Context;
 import android.util.AttributeSet;
