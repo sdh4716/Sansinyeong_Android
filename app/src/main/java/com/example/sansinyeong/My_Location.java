@@ -82,6 +82,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
     private LocationRequest locationRequest;
     private Location location;
     private View mLayout; //Snackbar 사용하기 위한 View
+    private String myLocation= ""; //위도 경도 저장할 변수
     /* */
 
     @Override
@@ -127,7 +128,8 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
 
                 //문자 전송
                 String phoneNo= "1234";
-                String sms= address_edit.getText().toString();
+                String sms= "주소값: "+address_edit.getText().toString()+"\n";
+                sms+= ","+ myLocation.toString();
                 try {
                     //전송
                     SmsManager smsManager = SmsManager.getDefault();
@@ -330,6 +332,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         markerOptions.draggable(true);
 
         address_edit.setText(markerTitle);
+        myLocation= "위도: "+location.getLatitude()+", 경도: "+location.getLongitude();
 
         currentMarker= mMap.addMarker(markerOptions);
 
