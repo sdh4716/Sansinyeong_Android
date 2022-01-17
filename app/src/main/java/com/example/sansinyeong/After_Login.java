@@ -28,7 +28,6 @@ public class After_Login extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
-        init();
 //        //퍼미션 메세지 권한 허용 여부 확인
 //        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
         //위치 권한 묻기

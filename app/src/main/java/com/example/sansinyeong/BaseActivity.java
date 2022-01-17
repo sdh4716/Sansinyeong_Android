@@ -18,6 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +33,9 @@ import java.util.List;
 public class BaseActivity extends AppCompatActivity {
 
 String ActivityName = "";
+private GoogleSignInClient mGoogleSignInClient;
+    private GoogleApiClient mGoogleApiClient;
+
 
     private FirebaseAuth firebaseAuth;
     @Override
@@ -41,8 +50,9 @@ String ActivityName = "";
 
 
         Log.d("AcName",ActivityName);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
 
     }
@@ -156,8 +166,8 @@ String ActivityName = "";
                     }
 
                     case R.id.item_logout: {
-                        Toast.makeText(getApplicationContext(),"로그아웃 되었습니다", Toast.LENGTH_LONG).show();
-                        FirebaseAuth.getInstance().signOut();
+                        firebaseAuth.signOut();
+
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         break;
@@ -166,6 +176,20 @@ String ActivityName = "";
                 return false;
             }
         });
+    }
+
+    //로그아웃
+    private void Google_signOut() {
+        // Firebase sign out
+        firebaseAuth.signOut();
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void myStartActivity(Class c) {

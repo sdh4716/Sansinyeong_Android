@@ -104,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
-                Intent intent = new Intent(getApplicationContext(), After_Login.class);
-                startActivity(intent);
+
 
             }
         });
@@ -146,10 +145,13 @@ public class MainActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                Intent intent = new Intent(getApplicationContext(), After_Login.class);
+                Toast.makeText(getApplicationContext(), "구글 로그인 성공", Toast.LENGTH_LONG).show();
+                startActivity(intent);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(getApplicationContext(), "Google sign in Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "구글 로그인 실패, 다시 시도해주세요", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -171,13 +173,13 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             //updateUI(user);
-                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             // Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
 
                             // updateUI(null);
                         }

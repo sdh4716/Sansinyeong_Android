@@ -9,7 +9,7 @@
     android:gravity="center_horizontal">
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="50dp">
@@ -40,7 +40,7 @@
 
         <EditText
             android:id="@+id/edittext_email"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
 
@@ -51,7 +51,7 @@
         <EditText
             android:id="@+id/edittext_password"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -61,7 +61,7 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -71,10 +71,11 @@
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_signin"
-            android:layout_width="302dp"
+            android:layout_width="307dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textAlignment="center"
+            android:layout_gravity="center"
             />
 
 
