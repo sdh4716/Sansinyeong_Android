@@ -161,9 +161,6 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         setDefultLocatin();
 
 
-
-
-
         /* */
         //런타임 퍼미션 처리
 
