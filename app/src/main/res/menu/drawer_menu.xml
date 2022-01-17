@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group>
+
+        <item
+            android:id="@+id/item_mypage"
+            android:icon="?android:attr/listChoiceIndicatorMultiple"
+            android:title="마이페이지" />
+        <item
+            android:id="@+id/item_mylocation"
+            android:icon="@drawable/ic_nav"
+            android:title="내 위치 보기" />
+        <item
+            android:id="@+id/item_setting"
+            android:title="설정"
+            android:icon="@drawable/ic_setting"/>
+
+
+    </group>
+
+    <item android:title=" ">
+        <menu>
+            <item
+                android:id="@+id/item_hikingsearch"
+                android:icon="@drawable/ic_search"
+                android:title="등산로 검색" />
+
+            <item android:id="@+id/item_notice"
+                android:title="공지사항"/>
+
+            <item android:id="@+id/item_hikingtalk"
+                android:title="산악 Talk"/>
+
+        </menu>
+
+    </item>
+
+
+</menu>
