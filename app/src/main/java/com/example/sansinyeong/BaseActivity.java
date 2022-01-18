@@ -12,12 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -27,6 +29,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -35,6 +40,7 @@ public class BaseActivity extends AppCompatActivity {
 String ActivityName = "";
 private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
+
 
 
     private FirebaseAuth firebaseAuth;
@@ -49,12 +55,36 @@ private GoogleSignInClient mGoogleSignInClient;
         ActivityName = componentName.getShortClassName().substring(1).trim();
 
 
+
+
         Log.d("AcName",ActivityName);
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-
-
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        if (document.exists()) {
+                            Log.d("sidebar_user_get", "DocumentSnapshot data: " + document.getData());
+                            if(document.getData().get("photoUrl") != null){
+                                final ImageView header_profile_img = findViewById(R.id.header_profile_img);
+                                Glide.with(getApplicationContext()).load(document.getData().get("photoUrl")).centerCrop().override(500).into(header_profile_img);
+                            }
+                            final TextView header_name = findViewById(R.id.header_name);
+                            header_name.setText(document.getData().get("name").toString());
+                        } else {
+                            Log.d("sidebar_user_get", "No such document");
+                        }
+                    }
+                } else {
+                    Log.d("sidebar_user_get", "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     @Override
@@ -167,6 +197,7 @@ private GoogleSignInClient mGoogleSignInClient;
 
                     case R.id.item_logout: {
                         firebaseAuth.signOut();
+
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);

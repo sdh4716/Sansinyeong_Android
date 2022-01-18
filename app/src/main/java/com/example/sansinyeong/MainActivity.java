@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ------ Google 로그인 start ------
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                // oAuth에서 clientID를 적어줘야 구글 로그인 작동함
                 .requestIdToken(getString(R.string.client_id_web))
                 .requestEmail()
                 .build();

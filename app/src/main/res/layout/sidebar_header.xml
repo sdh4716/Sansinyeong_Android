@@ -10,21 +10,37 @@
 
 
     <ImageView
-        android:id="@+id/header_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/header_profile_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/no_profile"
         android:layout_marginBottom="15dp"
         />
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="@color/white"
-        android:text="OOO님 반갑습니다"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/header_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:text="OOO"
+            android:layout_marginRight="4dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:text="님 반갑습니다"
+            />
+    </LinearLayout>
+
 
 
     <LinearLayout
