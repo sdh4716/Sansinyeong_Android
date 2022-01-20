@@ -48,6 +48,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     //구글 로그인
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
+//    implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
+    //캘린더 뷰
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

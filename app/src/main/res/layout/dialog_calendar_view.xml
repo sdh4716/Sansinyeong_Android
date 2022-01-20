@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarViewActivity"
+    android:orientation="vertical"
+    >
+
+
+<!--        <com.applikeysolutions.cosmocalendar.view.CalendarView-->
+<!--            android:id="@+id/calendar_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:connectedDayIconPosition="top"-->
+<!--            app:currentDayIconRes="@drawable/selected_bg"-->
+<!--            app:currentDaySelectedIconRes="@drawable/selected_bg"-->
+<!--            app:currentDayTextColor="#008000"-->
+<!--            app:firstDayOfTheWeek="sunday"-->
+<!--            app:orientation="horizontal"-->
+<!--            app:selectedDayBackgroundColor="#AFEEEE"-->
+<!--            app:selectedDayBackgroundEndColor="#48D1CC"-->
+<!--            app:selectedDayBackgroundStartColor="#48D1CC"-->
+<!--            app:selectedDayTextColor="#FFFFFF"-->
+<!--            app:selectionType="range"-->
+<!--            app:weekendDayTextColor="#ef4550" />-->
+
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/cv_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:mcv_selectionColor="#AFEEEE"
+            app:mcv_selectionMode="range"
+            app:mcv_firstDayOfWeek="sunday"
+            app:mcv_showOtherDates="other_months"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+                <TextView
+
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선택된 날짜 : "
+                    android:fontFamily="@font/goyang_ilsan_regular"/>
+
+                <TextView
+                    android:id="@+id/start_date"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2022-01-01"
+                    android:visibility="gone"
+                    android:fontFamily="@font/goyang_ilsan_regular"/>
+                <TextView
+                    android:id="@+id/middle_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ~ "
+                    android:visibility="gone"
+                    android:fontFamily="@font/goyang_ilsan_regular"/>
+                <TextView
+                    android:id="@+id/end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2022-01-03"
+                    android:visibility="gone"
+                    android:fontFamily="@font/goyang_ilsan_regular"/>
+
+        </LinearLayout>
+
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_day_select"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text='날짜 선택'-->
+<!--            android:fontFamily="@font/goyang_ilsan_regular"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+
+
+</LinearLayout>

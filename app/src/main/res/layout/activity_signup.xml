@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="회원가입"
+        android:fontFamily="@font/goyang_ilsan_regular"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
     ​
@@ -40,6 +41,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:hint= "이메일"
+        android:fontFamily="@font/goyang_ilsan_regular"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/black" />
     ​
@@ -51,6 +53,7 @@
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="textPassword"
+        android:fontFamily="@font/goyang_ilsan_regular"
         android:textColor="@android:color/black" />
         <EditText
             android:id="@+id/edt_passWordChk"
@@ -60,6 +63,7 @@
             android:ems="10"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:textColor="@android:color/black" />
 
 
@@ -70,6 +74,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:text="회원가입"
+        android:fontFamily="@font/goyang_ilsan_regular"
         android:textColor="@android:color/black"
         android:layout_marginTop="20dp"
         />
@@ -80,6 +85,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:text="로그인"
+        android:fontFamily="@font/goyang_ilsan_regular"
         android:textColor="@android:color/black" />
 
     </LinearLayout>

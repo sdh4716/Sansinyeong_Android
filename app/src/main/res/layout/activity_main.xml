@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="안전 산행 도우미"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:textSize="15dp"
             />
 
@@ -43,11 +44,11 @@
             android:layout_width="300dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
-
             android:ems="10"
             android:hint="E-mail"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:inputType="textEmailAddress" />
-        ​
+
         <EditText
             android:id="@+id/edittext_password"
             android:layout_gravity="center"
@@ -56,6 +57,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Password"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:layout_marginBottom="20dp"
             android:inputType="textPassword" />
 
@@ -67,6 +69,7 @@
             android:layout_marginBottom="10dp"
             android:background="#ffffff"
             android:backgroundTint="@android:color/holo_blue_dark"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:text="로그인" />
 
         <com.google.android.gms.common.SignInButton
@@ -76,6 +79,7 @@
             android:layout_marginBottom="10dp"
             android:textAlignment="center"
             android:layout_gravity="center"
+            android:fontFamily="@font/goyang_ilsan_regular"
             />
 
 
@@ -90,13 +94,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아직 회원이 아니신가요?  "/>
+                android:text="아직 회원이 아니신가요?  "
+                android:fontFamily="@font/goyang_ilsan_regular"/>
             <TextView
                 android:id="@+id/txt_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/teal_700"
-                android:text="회원가입"/>
+                android:text="회원가입"
+                android:fontFamily="@font/goyang_ilsan_regular"/>
         </LinearLayout>
 
 

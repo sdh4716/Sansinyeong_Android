@@ -1,4 +1,4 @@
-package com.example.sansinyeong;
+package com.example.sansinyeong.model;
 
 public class UserInfo {
 

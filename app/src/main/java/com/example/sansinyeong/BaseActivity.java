@@ -20,15 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -175,18 +172,18 @@ private GoogleSignInClient mGoogleSignInClient;
                     case R.id.item_hikingsearch: {
                         switch (ActivityName){
                             case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), Hiking_plan.class);
+                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
                             }
-                            case "Hiking_plan":{
+                            case "HikingPlanActivity":{
                                 Toast.makeText(getApplicationContext(), "현재 페이지입니다", Toast.LENGTH_SHORT).show();
                                 break;
                             }
 
                             default: {
-                                Intent intent = new Intent(getApplicationContext(), Hiking_plan.class);
+                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -200,6 +197,12 @@ private GoogleSignInClient mGoogleSignInClient;
 
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case R.id.item_notice: {
+
+                        Intent intent = new Intent(getApplicationContext(), CalendarViewActivity.class);
                         startActivity(intent);
                         break;
                     }

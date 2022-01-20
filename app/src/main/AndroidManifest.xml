@@ -64,10 +64,13 @@
             android:name=".My_Location"
             android:exported="false" />
         <activity
-            android:name=".Hiking_plan"
+            android:name=".HikingPlanActivity"
             android:exported="false" />
         <activity
             android:name=".MyPage"
+            android:exported="false" />
+        <activity
+            android:name=".CalendarViewActivity"
             android:exported="false" />
     </application>
 

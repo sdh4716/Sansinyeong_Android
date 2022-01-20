@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.sansinyeong.camera.CameraActivity;
+import com.example.sansinyeong.model.UserInfo;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
