@@ -20,6 +20,7 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
+                android:id="@+id/list_item_D"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="D-"
@@ -63,6 +64,21 @@
                 android:text="2022.01.03"
                 android:textSize="15dp"/>
 
+            <TextView
+                android:id="@+id/list_item_bak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15dp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="박"
+                android:textSize="15dp"
+                android:textColor="@android:color/holo_blue_dark" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -74,10 +90,10 @@
                 android:layout_height="wrap_content"
                 android:text="참여 인원 : "/>
             <TextView
-                android:id="@+id/item_list_members"
+                android:id="@+id/list_item_members"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3"/>
+                android:text="0"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

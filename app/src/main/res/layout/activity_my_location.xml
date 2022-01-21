@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="현재 위치(주소)"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:layout_gravity="center"/>
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="주소"
+            android:fontFamily="@font/goyang_ilsan_regular"
             android:layout_gravity="center"/>
 
         <fragment
@@ -52,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="#ff0000"
-            android:text="긴급 구조 요청 메시지 전송" />
+            android:text="긴급 구조 요청 메시지 전송"
+            android:fontFamily="@font/goyang_ilsan_regular"/>
 
     </LinearLayout>
     </LinearLayout>

@@ -26,8 +26,17 @@
             android:text="산행일정 추가"
             android:textColor="@android:color/black"
             android:textSize="25sp"
-            android:layout_marginBottom="40dp"
+
             android:fontFamily="@font/goyang_ilsan_regular"/>
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="250dp"
+            android:layout_height="1.2dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black" />
 
         <ScrollView
             android:layout_width="wrap_content"
@@ -152,6 +161,7 @@
                 android:fontFamily="@font/goyang_ilsan_regular"/>
 
             <TextView
+                android:id="@+id/plan_mountain_choose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -176,14 +186,24 @@
             android:id="@+id/ll_mountain_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/sv_mountain_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                android:layout_gravity="center"
+                android:outlineAmbientShadowColor="@color/white"
+                android:hint="산 이름을 검색하세요"
+                android:layout_margin="3dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plan_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="200dp"/>
 
         </LinearLayout>
 
@@ -235,6 +255,7 @@
                 android:layout_toLeftOf="@+id/plan_iv_plus"
                 android:fontFamily="@font/goyang_ilsan_regular"
                 android:text="0"
+                android:textColor="@color/teal_700"
                 android:textSize="25dp" />
 
             <ImageView
@@ -260,7 +281,7 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/btn_hikingSearch"
+            android:id="@+id/btn_add_plan"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_gravity="center"

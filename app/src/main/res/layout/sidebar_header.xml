@@ -55,6 +55,7 @@
             android:layout_weight="1"
             android:layout_marginRight="10dp">
             <TextView
+                android:id="@+id/sidebar_plan_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
@@ -70,27 +71,6 @@
                 android:text="등록된 일정"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="30dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="13dp"
-                android:textColor="@color/white"
-                android:text="등록된 일정"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -4,12 +4,16 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.sansinyeong.fragment.HomeFragment;
+import com.example.sansinyeong.fragment.PlanFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,7 +28,7 @@ public class After_Login extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
 
-
+        init();
         sidebar_open();
         menu_select();
         backBtn_action();
@@ -64,6 +68,38 @@ public class After_Login extends BaseActivity {
                 }
             });
         }
+        HomeFragment homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_main, homeFragment)
+                .commit();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+//                    case R.id.home:
+//                        HomeFragment homeFragment = new HomeFragment();
+//                        getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.container, homeFragment)
+//                                .commit();
+//                        return true;
+                    case R.id.nav_plan:
+                        PlanFragment planFragment = new PlanFragment();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container_main, planFragment)
+                                .commit();
+                        return true;
+//                    case R.id.friends:
+//                        UserListFragment userListFragment = new UserListFragment();
+//                        getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.container, userListFragment)
+//                                .commit();
+//                        return true;
+                }
+                return false;
+            }
+        });
     }
 
 

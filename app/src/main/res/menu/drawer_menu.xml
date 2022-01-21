@@ -10,7 +10,7 @@
             android:title="마이페이지" />
         <item
             android:id="@+id/item_mylocation"
-            android:icon="@drawable/ic_nav"
+            android:icon="@drawable/ic_mylocation2"
             android:title="내 위치 보기" />
 
 
@@ -20,14 +20,17 @@
         <menu>
             <item
                 android:id="@+id/item_hikingsearch"
-                android:icon="@drawable/ic_search"
+                android:icon="@drawable/ic_search2"
                 android:title="등산로 검색" />
 
             <item android:id="@+id/item_notice"
+                android:icon="@drawable/ic_notice"
                 android:title="공지사항"/>
 
-            <item android:id="@+id/item_logout"
-                android:title="로그아웃"/>
+            <item
+                android:id="@+id/item_logout"
+                android:icon="@drawable/ic_sign_out"
+                android:title="로그아웃" />
 
         </menu>
 
