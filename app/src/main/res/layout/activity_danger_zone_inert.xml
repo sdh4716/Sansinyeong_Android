@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DangerZoneInsert"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/zonepreview"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위험지역 입력"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/dangerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="위치에 대한 이름을 입력하세요" />
+
+        <EditText
+            android:id="@+id/dangerLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="위도값을 입력하세요" />
+
+        <EditText
+            android:id="@+id/dangerLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="경도값을 입력하세요" />
+
+        <EditText
+            android:id="@+id/dangerNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="기타 정보(번호로 입력)"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/btn_danger"
+            android:text="추가"
+            android:textSize="20dp"
+            android:backgroundTint="#FF0000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
