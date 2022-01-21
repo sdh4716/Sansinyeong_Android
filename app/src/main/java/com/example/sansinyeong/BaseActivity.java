@@ -209,7 +209,7 @@ private GoogleSignInClient mGoogleSignInClient;
                     case R.id.item_hikingsearch: {
                         switch (ActivityName){
                             case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -220,7 +220,7 @@ private GoogleSignInClient mGoogleSignInClient;
                             }
 
                             default: {
-                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -231,8 +231,7 @@ private GoogleSignInClient mGoogleSignInClient;
 
                     case R.id.item_logout: {
                         firebaseAuth.signOut();
-
-
+                        finish();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         break;

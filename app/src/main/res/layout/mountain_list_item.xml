@@ -6,7 +6,7 @@
     android:background="@drawable/shadow_sm"
     >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -26,33 +26,43 @@
             android:id="@+id/mountain_list_address"
             android:text="산 주소"
             android:fontFamily="@font/goyang_ilsan_regular"
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:layout_below="@+id/mountain_list_name"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_below="@+id/mountain_list_address">
             <TextView
                 android:id="@+id/mountain_list_height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="산 높이"
                 android:fontFamily="@font/goyang_ilsan_regular"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="m"
                 android:textSize="15dp" />
+
+
         </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next"
+            android:layout_alignParentEnd="true"/>
 <!--        <TextView-->
 <!--            android:id="@+id/mountain_list_feature"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:textSize="15dp"-->
 <!--            android:text="산 특징"/>-->
-    </LinearLayout>
+    </RelativeLayout>
 
 
 

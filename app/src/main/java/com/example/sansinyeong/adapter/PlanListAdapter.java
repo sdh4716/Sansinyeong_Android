@@ -65,6 +65,8 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
         Long dday = calDate / (24*60*60*1000);
             if (dday < 0){
                 holder.dDay.setText("day가 지났습니다");
+                holder.dDay.setTextColor(0xAAef484a);
+                holder.D.setTextColor(0xAAef484a);
             }else if (dday == 0){
                 holder.dDay.setText("day");
                 holder.dDay.setTextColor(0xAAef484a);

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".My_Location"
-    android:id="@+id/layout_board">
+    android:id="@+id/layout_board"
+    android:layout_marginTop="40dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +17,20 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        >
+
+
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            tools:context=".MapsActivity"
+         />
 
         <TextView
             android:layout_marginRight="10dp"
@@ -29,31 +40,24 @@
             android:fontFamily="@font/goyang_ilsan_regular"
             android:textColor="@color/black"
             android:textSize="15dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"/>
 
         <EditText
-            android:layout_marginRight="10dp"
             android:id="@+id/address_Edit"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="주소"
             android:fontFamily="@font/goyang_ilsan_regular"
             android:layout_gravity="center"/>
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            tools:context=".MapsActivity"
-         />
-
         <Button
             android:id="@+id/Btn_sos"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="#ff0000"
+            android:layout_gravity="center"
             android:text="긴급 구조 요청 메시지 전송"
             android:fontFamily="@font/goyang_ilsan_regular"/>
 
