@@ -29,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sansinyeong">
         <activity
+            android:name=".DangerZoneInert"
+            android:exported="false" />
+        <activity
             android:name=".MountainDetailActivity"
             android:exported="false" />
         <activity

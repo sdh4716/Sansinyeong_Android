@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -41,8 +43,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -208,7 +216,55 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         });
         /* */
 
+        //위험지역 표시
+        //firebaseList();
+    }
 
+    DatabaseReference databaseReference;
+    private void firebaseList(){
+        ArrayList<Dangers> dangers= new ArrayList<>();
+
+        //파이어 베이스 값 가져오기
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("dangerData").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //파이어베이스 데이터 ArrayList<Dangers> dangers 에 추가
+                Long abc= snapshot.getChildrenCount();
+                Log.d("abc", "onDataChange: "+abc);
+                for(int i=0;i<abc;i++){
+                    Dangers d1 = snapshot.child(String.valueOf(i)).getValue(Dangers.class);
+                    dangers.add(d1);
+                }
+                Log.d("DangerL", "onDataChange:"+dangers.size());
+
+                //커스텀 마커
+                BitmapDrawable bitmapDrawable= (BitmapDrawable)getResources().getDrawable(R.drawable.fire1);
+                Bitmap b= bitmapDrawable.getBitmap();
+                Bitmap fireMarker= Bitmap.createScaledBitmap(b,100,100,false);
+
+                for (int i = 0; i < dangers.size(); i++) {
+                    LatLng fire = new LatLng(dangers.get(i).getLatitude(), dangers.get(i).getLongitude());
+                    Log.d("Fire", "onMapReady: " + fire);
+                    MarkerOptions makerFire = new MarkerOptions();
+                    makerFire // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+                            .position(fire)
+                            .title(dangers.get(i).getLocationName())
+                            .snippet("위험지역!!!"); // 타이틀.
+                    makerFire.icon(BitmapDescriptorFactory.fromBitmap(fireMarker));
+                    mMap.addMarker(makerFire);
+//                    MyCluster myCluster = new MyCluster(dangers.get(i).getLatitude(), dangers.get(i).getLongitude(),
+//                            dangers.get(i).getLocationName(), String.valueOf(dangers.get(i).getNumber()));
+//                    clusterManager.setAnimation(false);
+//                    clusterManager.addItem(myCluster);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

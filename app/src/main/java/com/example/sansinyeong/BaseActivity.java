@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -27,11 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,7 +37,6 @@ public class BaseActivity extends AppCompatActivity {
 String ActivityName = "";
 private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
-    private TextView sidebar_plan_count;
 
 
 
@@ -57,36 +50,6 @@ private GoogleSignInClient mGoogleSignInClient;
         List<ActivityManager.RunningTaskInfo> info = manager.getRunningTasks(1);
         ComponentName componentName= info.get(0).topActivity;
         ActivityName = componentName.getShortClassName().substring(1).trim();
-        sidebar_plan_count = findViewById(R.id.sidebar_plan_count);
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("plans");
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
 
 
@@ -209,7 +172,7 @@ private GoogleSignInClient mGoogleSignInClient;
                     case R.id.item_hikingsearch: {
                         switch (ActivityName){
                             case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -220,7 +183,7 @@ private GoogleSignInClient mGoogleSignInClient;
                             }
 
                             default: {
-                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -231,17 +194,18 @@ private GoogleSignInClient mGoogleSignInClient;
 
                     case R.id.item_logout: {
                         firebaseAuth.signOut();
-                        finish();
+
+
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         break;
                     }
-//                    case R.id.item_notice: {
-//
-//                        Intent intent = new Intent(getApplicationContext(), CalendarViewActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                    }
+                    case R.id.item_notice: {
+
+                        Intent intent = new Intent(getApplicationContext(), CalendarViewActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
                 }
                 return false;
             }
@@ -249,18 +213,18 @@ private GoogleSignInClient mGoogleSignInClient;
     }
 
     //로그아웃
-//    private void Google_signOut() {
-//        // Firebase sign out
-//        firebaseAuth.signOut();
-//        // Google sign out
-//        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-//                new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//    }
+    private void Google_signOut() {
+        // Firebase sign out
+        firebaseAuth.signOut();
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
