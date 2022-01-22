@@ -10,39 +10,33 @@
     android:orientation="vertical"
     >
 
-    <LinearLayout
 
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp"
-       >
-
-        <Button
-            android:id="@+id/plan_add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_gravity="right"
-            android:text="+ 일정 추가"
-            android:fontFamily="@font/goyang_ilsan_regular"
-            android:textSize="13dp"
-
-            />
-    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_plan"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView_signUpTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/hambak"
-            android:text="산행 일정"
-            android:textSize="20dp" />
+            android:layout_gravity="center"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="일정 목록"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="250dp"
+            android:layout_height="1.2dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_hiking_plan_list"
@@ -50,5 +44,15 @@
             android:layout_height="400dp" />
 
     </LinearLayout>
+    <Button
+        android:id="@+id/plan_add_btn"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="+ 일정 추가"
+        android:layout_below="@id/ll_plan"
+        android:fontFamily="@font/goyang_ilsan_regular"
+        android:textSize="15dp"
 
+        />
 </RelativeLayout>

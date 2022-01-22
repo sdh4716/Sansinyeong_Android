@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import static com.example.sansinyeong.Util.showToast;
 
 public class After_Login extends BaseActivity {
     private static final String TAG = "After_Login";
@@ -37,10 +38,15 @@ public class After_Login extends BaseActivity {
         //위치 권한 묻기
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},1);
 
+
     }
 
+    @Override
+    public void onBackPressed() {
+        showToast(After_Login.this,"메인페이지입니다");
 
-    
+    }
+
     // After_Login 페이지로 진입했을때 User가 있다면 User Collection의 Uid를 가져온다 + 회원정보가 없으면 MemberInitActivity를 띄워줌
     // User가 없다면 회원가입 액티비티로 이동한다
     private void init() {

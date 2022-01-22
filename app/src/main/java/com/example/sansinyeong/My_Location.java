@@ -27,6 +27,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.sansinyeong.model.Dangers;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -48,6 +49,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.clustering.ClusterManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,6 +79,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
     //onRequestPermissionsResult 에서 수신된결과에 ActivityCompat.requestPermissions 를 사용한 퍼미션요청을 구별하기 위해 사용
     private static final int PERMISSIONS_REQUEST_CODE= 100;
     boolean needRequest= false;
+    ClusterManager<MyCluster> clusterManager;
 
     //앱을 실행하기위해 필요한 퍼미션 정의
 
@@ -168,6 +171,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
 
         mMap= googleMap;
         geocoder= new Geocoder(this);
+        clusterManager = new ClusterManager<MyCluster>(this,mMap);
 
         //지도 초기위치
         setDefultLocatin();
@@ -220,6 +224,10 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         });
         /* */
 
+        //클러스터
+        mMap.setOnCameraIdleListener(clusterManager);
+        mMap.setOnMarkerClickListener(clusterManager);
+
         //위험지역 표시
         firebaseList();
     }
@@ -252,16 +260,16 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
                     LatLng fire = new LatLng(dangers.get(i).getLatitude(), dangers.get(i).getLongitude());
                     Log.d("Fire", "onMapReady: " + fire);
                     MarkerOptions makerFire = new MarkerOptions();
-                    makerFire // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
-                            .position(fire)
-                            .title(dangers.get(i).getLocationName())
-                            .snippet("위험지역!!!"); // 타이틀.
-                    makerFire.icon(BitmapDescriptorFactory.fromBitmap(fireMarker));
-                    mMap.addMarker(makerFire);
-//                    MyCluster myCluster = new MyCluster(dangers.get(i).getLatitude(), dangers.get(i).getLongitude(),
-//                            dangers.get(i).getLocationName(), String.valueOf(dangers.get(i).getNumber()));
-//                    clusterManager.setAnimation(false);
-//                    clusterManager.addItem(myCluster);
+//                    makerFire // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+//                            .position(fire)
+//                            .title(dangers.get(i).getLocationName())
+//                            .snippet("위험지역!!!"); // 타이틀.
+//                    makerFire.icon(BitmapDescriptorFactory.fromBitmap(fireMarker));
+//                    mMap.addMarker(makerFire);
+                    MyCluster myCluster = new MyCluster(dangers.get(i).getLatitude(), dangers.get(i).getLongitude(),
+                            dangers.get(i).getLocationName(), String.valueOf(dangers.get(i).getNumber()));
+                    clusterManager.setAnimation(false);
+                    clusterManager.addItem(myCluster);
                 }
             }
 
@@ -392,7 +400,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         address_edit.setText(markerTitle);
         myLocation= "위도: "+location.getLatitude()+", 경도: "+location.getLongitude();
 
-        currentMarker= mMap.addMarker(markerOptions);
+//        currentMarker= mMap.addMarker(markerOptions);
 
         CameraUpdate cameraUpdate= CameraUpdateFactory.newLatLngZoom(currentLatLng,17);
         mMap.moveCamera(cameraUpdate);

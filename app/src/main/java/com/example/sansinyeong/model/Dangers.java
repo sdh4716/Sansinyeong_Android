@@ -1,4 +1,4 @@
-package com.example.sansinyeong;
+package com.example.sansinyeong.model;
 
 //위험지역 마커설정 데이터(위치,이름,기타등)
 public class Dangers {

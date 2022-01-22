@@ -253,9 +253,9 @@ public class HikingPlanActivity extends BaseActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (plan_mountain_choose.equals("산을 선택하세요")){
+                if (plan_mountain_choose.getText().toString().equals("산을 선택하세요")){
                     showToast(HikingPlanActivity.this,"산을 선택하세요");
-                }else if(plan_members.equals("0")){
+                }else if(plan_members.getText().toString().equals("0")){
                     showToast(HikingPlanActivity.this,"인원을 선택하세요");
                 }else{
                     add_plan(plan_start.getText().toString(),plan_end.getText().toString(),

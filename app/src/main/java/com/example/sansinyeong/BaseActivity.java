@@ -72,7 +72,7 @@ private GoogleSignInClient mGoogleSignInClient;
                                 Glide.with(getApplicationContext()).load(document.getData().get("photoUrl")).centerCrop().override(500).into(header_profile_img);
                             }
                             final TextView header_name = findViewById(R.id.header_name);
-                       //     header_name.setText(document.getData().get("name").toString());
+                            header_name.setText(document.getData().get("name").toString());
                         } else {
                             Log.d("sidebar_user_get", "No such document");
                         }
@@ -197,7 +197,7 @@ private GoogleSignInClient mGoogleSignInClient;
                     case R.id.item_hikingsearch: {
                         switch (ActivityName){
                             case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -208,7 +208,7 @@ private GoogleSignInClient mGoogleSignInClient;
                             }
 
                             default: {
-                                Intent intent = new Intent(getApplicationContext(), HikingPlanActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MountainListActivity.class);
                                 startActivity(intent);
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
@@ -227,9 +227,7 @@ private GoogleSignInClient mGoogleSignInClient;
                     }
                     case R.id.item_notice: {
 
-//                        Intent intent = new Intent(getApplicationContext(), CalendarViewActivity.class);
-//                        startActivity(intent);
-//                        break;
+
                     }
                 }
                 return false;
