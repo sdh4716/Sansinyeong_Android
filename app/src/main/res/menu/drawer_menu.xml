@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_mylocation2"
             android:title="내 위치 보기" />
 
+        <item
+            android:id="@+id/item_dangerInsert"
+            android:icon="@drawable/fire"
+            android:title="위험지역 보고" />
 
     </group>
 

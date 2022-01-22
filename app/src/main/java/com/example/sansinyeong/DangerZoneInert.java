@@ -81,8 +81,8 @@ public class DangerZoneInert extends BaseActivity {
         //  databaseReference.child("fireData").child(String.valueOf(keyNumber)).setValue(dangers); //테스트
         Toast.makeText(getApplicationContext(),"위험지역 보고가 완료되었습니다", Toast.LENGTH_LONG).show();
 
-//        Intent intent= new Intent(getApplicationContext(),DangerZone.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent= new Intent(getApplicationContext(),My_Location.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -91,6 +91,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
     private Location location;
     private View mLayout; //Snackbar 사용하기 위한 View
     private String myLocation= ""; //위도 경도 저장할 변수
+
     /* */
 
     @Override
@@ -114,10 +115,13 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mLayout= findViewById(R.id.layout_board);
 
-        locationRequest= new LocationRequest()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(UPDATE_INTERVAL_MS)
-                .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
+//        locationRequest= new LocationRequest()
+//                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+//                .setInterval(UPDATE_INTERVAL_MS)
+//                .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
+
+
+        locationRequest= new LocationRequest();
 
         LocationSettingsRequest.Builder builder= new LocationSettingsRequest.Builder();
         builder.addLocationRequest(locationRequest);
@@ -217,8 +221,9 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         /* */
 
         //위험지역 표시
-        //firebaseList();
+        firebaseList();
     }
+
 
     DatabaseReference databaseReference;
     private void firebaseList(){
@@ -236,7 +241,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
                     Dangers d1 = snapshot.child(String.valueOf(i)).getValue(Dangers.class);
                     dangers.add(d1);
                 }
-                Log.d("DangerL", "onDataChange:"+dangers.size());
+                Log.d("DangerL", "onDataChange:"+dangers);
 
                 //커스텀 마커
                 BitmapDrawable bitmapDrawable= (BitmapDrawable)getResources().getDrawable(R.drawable.fire1);
