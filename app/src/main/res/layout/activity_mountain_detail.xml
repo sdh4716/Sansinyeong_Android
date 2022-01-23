@@ -17,28 +17,175 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/mountain_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/goyang_ilsan_regular"
-            android:text="지리산"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:src="@drawable/img_product"/>
-
-        <View
-            android:id="@+id/view_line"
-            android:layout_width="match_parent"
-            android:layout_height="1.2dp"
-            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@android:color/tertiary_text_dark" />
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="산행지 상세보기"
+            android:textColor="@android:color/black"
+            android:textSize="23dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mountain_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="지리산"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_community_good_off" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/mountain_detail_img_chosen"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_product" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/mountain_detail_img1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_product" />
+
+                <ImageView
+                    android:id="@+id/mountain_detail_img2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_product"
+                    android:visibility="visible"/>
+
+                <ImageView
+                    android:id="@+id/mountain_detail_img3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_product"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="15dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="주소 : "
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/mountain_detail_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="어디어디어디어디"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="높이 : "
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/mountain_detail_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="9999999"
+                    android:textSize="15dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="m"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="특징 : "
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/mountain_detail_feature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="높음 높아요 아주 높아요"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </ScrollView>
+
+
+
+
     </LinearLayout>
 
 

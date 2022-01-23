@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.sansinyeong.fragment.FriendsFragment;
 import com.example.sansinyeong.fragment.HomeFragment;
 import com.example.sansinyeong.fragment.PlanFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -96,12 +97,12 @@ public class After_Login extends BaseActivity {
                                 .replace(R.id.container_main, planFragment)
                                 .commit();
                         return true;
-//                    case R.id.friends:
-//                        UserListFragment userListFragment = new UserListFragment();
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.container, userListFragment)
-//                                .commit();
-//                        return true;
+                    case R.id.nav_friends:
+                        FriendsFragment friendsFragment = new FriendsFragment();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container_main, friendsFragment)
+                                .commit();
+                        return true;
                 }
                 return false;
             }

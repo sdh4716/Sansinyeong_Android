@@ -262,6 +262,7 @@ public class HikingPlanActivity extends BaseActivity {
                             plan_mountain_choose.getText().toString(), plan_members.getText().toString(),
                             plan_bak.getText().toString());
                     showToast(HikingPlanActivity.this,"일정이 등록되었습니다");
+
                     finish();
                 }
             }

@@ -109,6 +109,8 @@ public class MemberInitActivity extends BaseActivity {
         final String phoneNumber = ((EditText) findViewById(R.id.phoneNumberEditText)).getText().toString();
         final String birthDay = ((EditText) findViewById(R.id.birthDayEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
+        final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         if (name.length() > 0 && phoneNumber.length() > 9 && birthDay.length() > 5 && address.length() > 0) {
             loaderLayout.setVisibility(View.VISIBLE);
@@ -118,7 +120,7 @@ public class MemberInitActivity extends BaseActivity {
             final StorageReference mountainImagesRef = storageRef.child("users/" + user.getUid() + "/profileImage.jpg");
 
             if (profilePath == null) {
-                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address);
+                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, uid ,email);
                 storeUploader(userInfo);
             } else {
                 try {
@@ -137,8 +139,7 @@ public class MemberInitActivity extends BaseActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-
-                                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, downloadUri.toString());
+                                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, downloadUri.toString(), uid, email);
                                 storeUploader(userInfo);
                             } else {
                                 showToast(MemberInitActivity.this, "회원정보를 보내는데 실패하였습니다.");

@@ -23,6 +23,7 @@ import com.example.sansinyeong.adapter.MountainSearchAdapter;
 import com.example.sansinyeong.adapter.PlanListAdapter;
 import com.example.sansinyeong.model.Plan;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,6 +64,7 @@ public class PlanFragment extends Fragment {
         recyclerView.setAdapter(planListAdapter);
         btn_add = (Button) view.findViewById(R.id.plan_add_btn);
 
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("plans");
 
@@ -91,6 +93,8 @@ public class PlanFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
         return view;
 

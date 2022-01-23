@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.sansinyeong.adapter.MountainSearchAdapter;
@@ -29,6 +31,7 @@ public class MountainListActivity extends BaseActivity {
     private FirebaseFirestore firebaseFirestore;
     MountainSearchAdapter mountainSearchAdapter;
     private EditText mountain_search;
+    Mountains mountain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,24 @@ public class MountainListActivity extends BaseActivity {
                         }
                     });
                 }
+
+            }
+        });
+
+        mountainSearchAdapter.setOnItemClickListener(new MountainSearchAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                mountain = mountains_List.get(position);
+                Intent intent = new Intent(v.getContext(),MountainDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("m_name",mountain.getName());
+                intent.putExtra("m_addr",mountain.getAddress());
+                intent.putExtra("m_height",mountain.getHeight());
+                intent.putExtra("m_feature",mountain.getFeature());
+                intent.putExtra("m_img1",mountain.getImg1());
+                intent.putExtra("m_img2",mountain.getImg2());
+                intent.putExtra("m_img3",mountain.getImg3());
+                v.getContext().startActivity(intent);
 
             }
         });

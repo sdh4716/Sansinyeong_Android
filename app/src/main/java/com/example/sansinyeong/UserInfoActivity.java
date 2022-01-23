@@ -16,6 +16,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 public class UserInfoActivity extends BaseActivity {
     private static final String TAG = "UserInfoFragment";
 
@@ -33,7 +35,7 @@ public class UserInfoActivity extends BaseActivity {
         final TextView nameTextView = findViewById(R.id.nameTextView);
         final TextView phoneNumberTextView = findViewById(R.id.phoneNumberTextView);
         final TextView birthDayTextView = findViewById(R.id.birthDayTextView);
-        final TextView addressTextView = findViewById(R.id.addressTextView);
+        final TextView emailTextView = findViewById(R.id.emailTextView);
 
         DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -50,7 +52,7 @@ public class UserInfoActivity extends BaseActivity {
                             nameTextView.setText(document.getData().get("name").toString());
                             phoneNumberTextView.setText(document.getData().get("phoneNumber").toString());
                             birthDayTextView.setText(document.getData().get("birthDay").toString());
-                            addressTextView.setText(document.getData().get("address").toString());
+                            emailTextView.setText(document.getData().get("email").toString());
                         } else {
                             Log.d(TAG, "No such document");
                         }
