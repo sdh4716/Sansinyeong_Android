@@ -3,74 +3,31 @@ package com.example.sansinyeong.model;
 import java.util.ArrayList;
 
 public class WeatherXml { //data tag
-    private ArrayList<LocationBody> locationBody;
+    String province;
+    String city;
+    ArrayList<WeatherData> dataBody;
 
-    public ArrayList<LocationBody> getLocationBody() {
-        return locationBody;
+    public String getProvince() {
+        return province;
     }
 
-    public void setLocationBody(ArrayList<LocationBody> locationBody) {
-        this.locationBody = locationBody;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
-    class LocationBody{
-        private String province;
-        private String city;
-        private ArrayList<DataBody> dataBody;
-
-        public String getProvince() {
-            return province;
-        }
-
-        public void setProvince(String province) {
-            this.province = province;
-        }
-
-        public String getCity() {
-            return city;
-        }
-
-        public void setCity(String city) {
-            this.city = city;
-        }
+    public String getCity() {
+        return city;
     }
 
-    class DataBody{
-        private String tmEf; //날짜
-        private String wf; //날씨
-        private String tmn; //최저기온
-        private String tmx; //최고기온
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-        public String getTmEf() {
-            return tmEf;
-        }
+    public ArrayList<WeatherData> getDataBody() {
+        return dataBody;
+    }
 
-        public void setTmEf(String tmEf) {
-            this.tmEf = tmEf;
-        }
-
-        public String getWf() {
-            return wf;
-        }
-
-        public void setWf(String wf) {
-            this.wf = wf;
-        }
-
-        public String getTmn() {
-            return tmn;
-        }
-
-        public void setTmn(String tmn) {
-            this.tmn = tmn;
-        }
-
-        public String getTmx() {
-            return tmx;
-        }
-
-        public void setTmx(String tmx) {
-            this.tmx = tmx;
-        }
+    public void setDataBody(ArrayList<WeatherData> dataBody) {
+        this.dataBody = dataBody;
     }
 }

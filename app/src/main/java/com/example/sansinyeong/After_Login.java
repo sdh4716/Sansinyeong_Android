@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.example.sansinyeong.fragment.HomeFragment;
 import com.example.sansinyeong.fragment.PlanFragment;
+import com.example.sansinyeong.model.WeatherData;
 import com.example.sansinyeong.model.WeatherXml;
 import com.example.sansinyeong.service.Weather_Service;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,8 +49,7 @@ public class After_Login extends BaseActivity {
     //날씨
     Weather_Service weather_service;
     private final static String appKey = "ea144e7c98e106ef4f26fb9f731be176";
-    TextView weatherCity, weatherTemp, weatherDesc;
-    ImageView weatherIcon;
+    TextView weatherCity;
     WeatherXml data;
 
     @Override
@@ -58,10 +58,6 @@ public class After_Login extends BaseActivity {
         setContentView(R.layout.activity_after_login);
 
         weatherCity= findViewById(R.id.weatherCity); //지역
-        weatherTemp= findViewById(R.id.weatherTemp); //온도
-        weatherIcon= findViewById(R.id.weatherIcon); //상태 아이콘이미지
-        weatherDesc= findViewById(R.id.weatherDescription); //상태
-
 
         sidebar_open();
         menu_select();
@@ -75,6 +71,8 @@ public class After_Login extends BaseActivity {
         sidebar_info();
         getCurrentWeather();
         init();
+
+       // WeatherThread();
     }
 
 
@@ -153,7 +151,7 @@ public class After_Login extends BaseActivity {
         Call<WeatherResponse> weather1= weather_service.CurrentWeather(
                 String.valueOf(35.098622772659986),
                 String.valueOf(129.03688048507343)
-                ,appKey,"metric");
+                ,appKey,"metric","kr");
 
         weather1.enqueue(new Callback<WeatherResponse>() {
             @Override
@@ -192,7 +190,7 @@ public class After_Login extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        weatherCity.setText("도시이름");
+                        weatherCity.setText(data.getCity());
                     }
                 });
             }
@@ -200,10 +198,13 @@ public class After_Login extends BaseActivity {
 
     }
 
+    WeatherXml weatherXml;
+    WeatherData weatherData;
     private WeatherXml getXmlData(){
         StringBuffer buffer=new StringBuffer();
-        WeatherXml weatherXml= new WeatherXml();;
-
+        weatherXml= new WeatherXml();
+        weatherData= new WeatherData();
+        ArrayList<WeatherData> Wdata= new ArrayList<>();
         String queryUrl="https://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
         try{
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
@@ -224,39 +225,42 @@ public class After_Login extends BaseActivity {
                     case XmlPullParser.START_TAG:
                         tag= xpp.getName();//테그 이름 얻어오기
                         if (xpp.equals("location")) {
-                            //객체 생성
+
                         }
                         break;
-
                     case XmlPullParser.TEXT:
                         switch(tag) {
                             case "city":{
-//                                Log.d(TAG, "getXmlData:"+weatherXm);
+                                weatherData.setCity(xpp.getText());
                                 break;
                             }
                             case "tmEf":{
-//                                weatherXmlData.setTmEf(xpp.getText());
+                                weatherData.setTmEf(xpp.getText());
                                 break;
                             }
                             case "wf":{
-//                                weatherXmlData.setWf(xpp.getText());
+                                weatherData.setWf(xpp.getText());
                                 break;
                             }
                             case "tmn":{
-//                                weatherXmlData.setTmn(xpp.getText());
+                                weatherData.setTmn(xpp.getText());
                                 break;
                             }
                             case "tmx":{
-//                                weatherXmlData.setTmx(xpp.getText());
+                                weatherData.setTmx(xpp.getText());
                                 break;
                             }
                         }
+                        Wdata.add(weatherData);
                         break;
 
                     case XmlPullParser.END_TAG:
                         tag= xpp.getName(); //테그 이름 얻어오기
                         if(tag.equals("location"))
-                            break;// 첫번째 검색결과종료..줄바꿈
+                            break;
+                        weatherXml.setDataBody(Wdata);
+                        Log.d(TAG, "getXmlData: "+weatherXml.getDataBody().get(1).getCity());
+                            // 첫번째 검색결과종료..줄바꿈
                 }
 
                 eventType= xpp.next();

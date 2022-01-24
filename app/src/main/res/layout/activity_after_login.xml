@@ -11,7 +11,11 @@
     android:layout_marginTop="40dp"
     >
 
-
+    <TextView
+        android:id="@+id/weatherCity"
+        android:layout_width="wrap_content"
+        android:textColor="#ff0000"
+        android:layout_height="wrap_content" />
 
 
 
