@@ -72,7 +72,7 @@ private GoogleSignInClient mGoogleSignInClient;
                                 Glide.with(getApplicationContext()).load(document.getData().get("photoUrl")).centerCrop().override(500).into(header_profile_img);
                             }
                             final TextView header_name = findViewById(R.id.header_name);
-                            header_name.setText(document.getData().get("name").toString());
+//                            header_name.setText(document.getData().get("name").toString());
                         } else {
                             Log.d("sidebar_user_get", "No such document");
                         }

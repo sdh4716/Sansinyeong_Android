@@ -2,7 +2,9 @@ package com.example.sansinyeong;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Gsignin = findViewById(R.id.google_signin);
 
         textSignup = (TextView) findViewById(R.id.txt_signup);
+        //전화+문자권한 여부확인
+        ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.CALL_PHONE, Manifest.permission.SEND_SMS},1);
 
         //------회원가입 start------
         textSignup.setOnClickListener(new View.OnClickListener() {

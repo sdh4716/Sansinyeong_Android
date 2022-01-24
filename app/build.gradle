@@ -66,4 +66,12 @@ dependencies {
 
     //마커 클러스터링 사용
     implementation 'com.google.maps.android:android-maps-utils:2.2.3'
+
+    //레트로핏 사용-> 현재 날짜정보 가져오기
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //이미지 url 사용(날씨 아이콘 가져오기)
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }

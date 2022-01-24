@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.sansinyeong.model.Dangers;
+import com.example.sansinyeong.Dangers;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DangerZoneInert extends BaseActivity {
-    EditText dangerName, dangerLatitude,dangerLongitude,dangerNumber;
+    EditText dangerName, dangerLatitude,dangerLongitude,dangerNumber,dangerExplanation;
     Button btn_danger;
     DatabaseReference databaseReference;
     Long number;
@@ -35,7 +35,8 @@ public class DangerZoneInert extends BaseActivity {
         dangerName= findViewById(R.id.dangerName);
         dangerLatitude= findViewById(R.id.dangerLatitude);
         dangerLongitude= findViewById(R.id.dangerLongitude);
-        dangerNumber= findViewById(R.id.dangerNumber);
+        dangerExplanation= findViewById(R.id.dangerExplanation);//설명
+        dangerNumber= findViewById(R.id.dangerNumber); //구분 번호
 
         btn_danger= findViewById(R.id.btn_danger);
         number= 0l;
@@ -75,7 +76,8 @@ public class DangerZoneInert extends BaseActivity {
         String latitude= dangerLatitude.getText().toString();
         String longitude= dangerLongitude.getText().toString();
         Integer number= Integer.valueOf(dangerNumber.getText().toString());
-        Dangers dangers= new Dangers(number ,name,Double.valueOf(latitude),Double.valueOf(longitude));
+        String explanation= dangerExplanation.getText().toString();
+        Dangers dangers= new Dangers(number,name,Double.valueOf(latitude),Double.valueOf(longitude),explanation);
         //위험정보 데이터 리얼타임데이터베이스에 추가
         databaseReference.child("dangerData").child(String.valueOf(keyNumber)).setValue(dangers);
         //  databaseReference.child("fireData").child(String.valueOf(keyNumber)).setValue(dangers); //테스트
