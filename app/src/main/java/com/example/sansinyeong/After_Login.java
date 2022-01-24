@@ -50,22 +50,11 @@ public class After_Login extends BaseActivity {
     //날씨
     Weather_Service weather_service;
     private final static String appKey = "ea144e7c98e106ef4f26fb9f731be176";
-    TextView weatherCity1;
-    WeatherXml data;
 
-    final String[] CityList= {"서울", "인천", "수원", "파주","이천", "평택", "춘천",
-            "원주", "강릉","대전","세종","홍성","청주","충주","영동","광주","목포","여수","순천"
-            ,"광양","나주","전주","군산","정읍","남원","고창","무주","부산","울산","창원","진주"
-            ,"거창","통영","대구","안동","포항","경주","울진","울릉도","제주","서귀포"};
-
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
-
-        weatherCity1= findViewById(R.id.weatherCity1); //지역
-
 
         sidebar_open();
         menu_select();
@@ -80,11 +69,10 @@ public class After_Login extends BaseActivity {
         getCurrentWeather();
         init();
 
-//        WeatherThread();
     }
 
 
-    
+
     // After_Login 페이지로 진입했을때 User가 있다면 User Collection의 Uid를 가져온다 + 회원정보가 없으면 MemberInitActivity를 띄워줌
     // User가 없다면 회원가입 액티비티로 이동한다
     private void init() {
@@ -119,12 +107,9 @@ public class After_Login extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-//                    case R.id.home:
-//                        HomeFragment homeFragment = new HomeFragment();
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.container, homeFragment)
-//                                .commit();
-//                        return true;
+                    case R.id.nav_home:
+                        getCurrentWeather();
+                        return true;
                     case R.id.nav_plan:
                         PlanFragment planFragment = new PlanFragment();
                         getSupportFragmentManager().beginTransaction()
@@ -142,8 +127,6 @@ public class After_Login extends BaseActivity {
             }
         });
     }
-
-//        WeatherThread();
 
 
     private void myStartActivity(Class c) {
@@ -188,101 +171,4 @@ public class After_Login extends BaseActivity {
 
 
     }
-
-    private void WeatherThread(){
-
-          new Thread(new Runnable() {
-            @Override
-            public void run() {
-                data=getXmlData();
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-//                        weatherCity1.setText(data.getDataBody().get(0).getCity());
-                    }
-                });
-            }
-        }).start();
-
-    }
-
-    WeatherXml weatherXml;
-    WeatherData weatherData;
-    private WeatherXml getXmlData(){
-        StringBuffer buffer=new StringBuffer();
-        weatherXml= new WeatherXml();
-        weatherData= new WeatherData();
-        ArrayList<WeatherData> Wdata= new ArrayList<>();
-        String queryUrl="https://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
-        try{
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
-
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();//xml파싱을 위한
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
-
-            String tag="";
-            xpp.next();
-            int eventType= xpp.getEventType();
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
-                    case XmlPullParser.START_DOCUMENT:
-                        break;
-
-                    case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//테그 이름 얻어오기
-                        if(tag.equals("location")){
-
-                        }
-                        break;
-                    case XmlPullParser.TEXT:
-
-                        switch(tag) {
-                            case "city":{
-                                weatherXml.setCity(xpp.getText());
-//                                Log.d(TAG, "getXmlData: "+weatherXml.getCity());
-                            }
-                            case "tmEf":{
-                                weatherData.setTmEf(xpp.getText());
-//                                Log.d(TAG, "getXmlData: "+weatherData.getTmEf());
-                                break;
-                            }
-                            case "wf":{
-                                weatherData.setWf(xpp.getText());
-                                break;
-                            }
-                            case "tmn":{
-                                weatherData.setTmn(xpp.getText());
-                                break;
-                            }
-                            case "tmx":{
-                                weatherData.setTmx(xpp.getText());
-                                break;
-                            }
-                        }
-                        Wdata.add(weatherData);
-                        break;
-
-                    case XmlPullParser.END_TAG:
-                        if (xpp.getName().equals("location")) {
-                            //객체를 리스트에 추가
-                            weatherXml.setDataBody(Wdata);
-                            //Log.d(TAG, "getXmlData: "+weatherXml.getCity());
-                        }
-                        break;
-
-                }
-
-                eventType= xpp.next();
-            }
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return weatherXml;//StringBuffer 문자열 객체 반환
-    }
-
 }

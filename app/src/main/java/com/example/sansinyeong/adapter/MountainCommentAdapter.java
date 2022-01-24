@@ -88,7 +88,7 @@ public class MountainCommentAdapter extends RecyclerView.Adapter<MountainComment
 
         holder.username.setText(comment.getUsername());
         holder.content.setText(comment.getContent());
-        holder.star.setText(comment.getStar().toString());
+        holder.star.setText(comment.getStar().toString()+".0");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference_add = firebaseDatabase.getReference();

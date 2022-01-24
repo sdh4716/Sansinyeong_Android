@@ -14,91 +14,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/bg_gradient_01"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="180dp"
-            android:layout_height="150dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/weatherCity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="도시이름"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/weatherTemp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="온도"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/weatherDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상세정보"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="200dp"
-       >
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_gravity="right"
-            android:text="+ 일정 추가"
-            android:textSize="13dp"
-
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/hambak"
-            android:layout_gravity="center"
-            android:text="산행 일정"
-            android:textSize="20dp" />
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="450dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_gradient_01"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/weatherIcon"
+                android:layout_width="180dp"
+                android:layout_height="150dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/weatherCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="도시이름"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/weatherTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="온도"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/weatherDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상세정보"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 
 

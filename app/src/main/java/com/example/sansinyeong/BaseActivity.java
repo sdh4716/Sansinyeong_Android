@@ -38,9 +38,10 @@ String ActivityName = "";
 private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
 
-
+    NavigationView NavView;
 
     FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +53,16 @@ private GoogleSignInClient mGoogleSignInClient;
         ActivityName = componentName.getShortClassName().substring(1).trim();
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         Log.d("AcName",ActivityName);
 
+//        DrawerLayout drawerLayout = findViewById(R.id.drawer);
+//        NavView = findViewById(R.id.nav_view);
+
+//        if (firebaseAuth.getCurrentUser().getUid().equals("y7w9lcQ27ASPADsbcG1egJQnlZz1")){
+//            NavView.findViewById(R.id.item_dangerInsert)
+//        }else{
+//            NavView.findViewById(R.id.item_dangerInsert).setVisibility(View.GONE);
+//        }
     }
 
     public void sidebar_info(){
@@ -72,7 +80,7 @@ private GoogleSignInClient mGoogleSignInClient;
                                 Glide.with(getApplicationContext()).load(document.getData().get("photoUrl")).centerCrop().override(500).into(header_profile_img);
                             }
                             final TextView header_name = findViewById(R.id.header_name);
-//                            header_name.setText(document.getData().get("name").toString());
+                            header_name.setText(document.getData().get("name").toString());
                         } else {
                             Log.d("sidebar_user_get", "No such document");
                         }

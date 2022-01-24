@@ -60,10 +60,10 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginRight="4dp"
-            android:padding="10dp"
-            android:text="5"
+            android:padding="5dp"
+            android:text="5.0"
             android:textColor="@color/colorWhiteBlue"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
 <!--        <TextView-->
 <!--            android:id="@+id/mountain_list_feature"-->

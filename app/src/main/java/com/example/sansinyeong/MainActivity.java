@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
                 firebaseAuth.addAuthStateListener(firebaseAuthListener);
 //                Intent intent = new Intent(getApplicationContext(), After_Login.class);
-//                Toast.makeText(getApplicationContext(), "구글 로그인 성공", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "구글 로그인 성공", Toast.LENGTH_LONG).show();
 //                startActivity(intent);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
