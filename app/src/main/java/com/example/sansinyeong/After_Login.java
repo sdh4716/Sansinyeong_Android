@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 
 import com.bumptech.glide.Glide;
 import com.example.sansinyeong.fragment.HomeFragment;
@@ -38,6 +38,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,15 +50,22 @@ public class After_Login extends BaseActivity {
     //날씨
     Weather_Service weather_service;
     private final static String appKey = "ea144e7c98e106ef4f26fb9f731be176";
-    TextView weatherCity;
+    TextView weatherCity1;
     WeatherXml data;
 
+    final String[] CityList= {"서울", "인천", "수원", "파주","이천", "평택", "춘천",
+            "원주", "강릉","대전","세종","홍성","청주","충주","영동","광주","목포","여수","순천"
+            ,"광양","나주","전주","군산","정읍","남원","고창","무주","부산","울산","창원","진주"
+            ,"거창","통영","대구","안동","포항","경주","울진","울릉도","제주","서귀포"};
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
 
-        weatherCity= findViewById(R.id.weatherCity); //지역
+        weatherCity1= findViewById(R.id.weatherCity1); //지역
+
 
         sidebar_open();
         menu_select();
@@ -72,7 +80,7 @@ public class After_Login extends BaseActivity {
         getCurrentWeather();
         init();
 
-       // WeatherThread();
+//        WeatherThread();
     }
 
 
@@ -165,6 +173,7 @@ public class After_Login extends BaseActivity {
                 data.putString("temp", String.format("%.0f",weatherResponse.main.getTemp())+"°C");
                 data.putString("description", weatherResponse.weather.get(0).getDescription());
                 data.putString("icon", weatherResponse.weather.get(0).getIcon());
+                data.putString("weatherId",String.valueOf(weatherResponse.weather.get(0).getId()));
                 homeFragment.setArguments(data);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container_main, homeFragment)
@@ -190,7 +199,7 @@ public class After_Login extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        weatherCity.setText(data.getCity());
+//                        weatherCity1.setText(data.getDataBody().get(0).getCity());
                     }
                 });
             }
@@ -224,18 +233,20 @@ public class After_Login extends BaseActivity {
 
                     case XmlPullParser.START_TAG:
                         tag= xpp.getName();//테그 이름 얻어오기
-                        if (xpp.equals("location")) {
+                        if(tag.equals("location")){
 
                         }
                         break;
                     case XmlPullParser.TEXT:
+
                         switch(tag) {
                             case "city":{
-                                weatherData.setCity(xpp.getText());
-                                break;
+                                weatherXml.setCity(xpp.getText());
+//                                Log.d(TAG, "getXmlData: "+weatherXml.getCity());
                             }
                             case "tmEf":{
                                 weatherData.setTmEf(xpp.getText());
+//                                Log.d(TAG, "getXmlData: "+weatherData.getTmEf());
                                 break;
                             }
                             case "wf":{
@@ -255,12 +266,13 @@ public class After_Login extends BaseActivity {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //테그 이름 얻어오기
-                        if(tag.equals("location"))
-                            break;
-                        weatherXml.setDataBody(Wdata);
-                        Log.d(TAG, "getXmlData: "+weatherXml.getDataBody().get(1).getCity());
-                            // 첫번째 검색결과종료..줄바꿈
+                        if (xpp.getName().equals("location")) {
+                            //객체를 리스트에 추가
+                            weatherXml.setDataBody(Wdata);
+                            //Log.d(TAG, "getXmlData: "+weatherXml.getCity());
+                        }
+                        break;
+
                 }
 
                 eventType= xpp.next();

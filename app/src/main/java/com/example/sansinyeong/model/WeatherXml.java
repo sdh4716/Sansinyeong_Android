@@ -3,17 +3,8 @@ package com.example.sansinyeong.model;
 import java.util.ArrayList;
 
 public class WeatherXml { //data tag
-    String province;
-    String city;
-    ArrayList<WeatherData> dataBody;
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
+    private String city;
+    private ArrayList<WeatherData> dataBody;
 
     public String getCity() {
         return city;

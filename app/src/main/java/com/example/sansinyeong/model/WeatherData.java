@@ -3,19 +3,10 @@ package com.example.sansinyeong.model;
 import java.util.ArrayList;
 
 public class WeatherData { //data tag
-    String city; //도시
-    String tmEf; //날짜
-    String wf; //날씨
-    String tmn; //최저기온
-    String tmx; //최고기온
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
+    private String tmEf; //날짜
+    private String wf; //날씨
+    private String tmn; //최저기온
+    private String tmx; //최고기온
 
     public String getTmEf() {
         return tmEf;

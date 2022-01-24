@@ -211,8 +211,7 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
             }
 
         }
-//        mMap.setMinZoomPreference(10.0f); //줌 최소
-//        mMap.setMaxZoomPreference(20.0f); //줌 최대
+
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
