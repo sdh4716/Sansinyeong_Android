@@ -52,7 +52,10 @@ public class FriendsFragment extends Fragment {
         users = new ArrayList<>(); // Plan 객체를 담을 ArrayList (어댑터 쪽으로)
         userListAdapter = new UserListAdapter(users);
         recyclerView.setAdapter(userListAdapter);
+
+
         return view;
+
     }
     @Override
     public void onAttach(Context context) {

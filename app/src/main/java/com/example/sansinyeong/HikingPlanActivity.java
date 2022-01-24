@@ -332,8 +332,5 @@ public class HikingPlanActivity extends BaseActivity {
         // .push()는 상위 키값을 랜덤으로 설정해 주는 함수 (블로그 왈 채팅기능 만들때 사용하면 좋답니다)
         // .setValue로 Plan 클래스에서 지정한 값을 자동으로 넣어줌
         databaseReference.child("users").child(user.getUid()).child("plans").push().setValue(plan);
-
-
-
     }
 }

@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drw_sidebar"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="250dp"
 
     android:orientation="vertical"
     android:gravity="center_horizontal"
@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/header_profile_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/no_profile"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
@@ -57,7 +57,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_marginRight="10dp">
+>
             <TextView
                 android:id="@+id/sidebar_plan_count"
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2"
+                android:text="1"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="30dp"/>
@@ -95,7 +95,7 @@
                 android:layout_gravity="center"
                 android:textSize="13dp"
                 android:textColor="@color/white"
-                android:text="등록된 일정"/>
+                android:text="알림"/>
         </LinearLayout>
     </LinearLayout>
 

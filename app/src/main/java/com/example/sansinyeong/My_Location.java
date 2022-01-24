@@ -106,8 +106,9 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
         menu_select();
         backBtn_action();
 
-        //위치 권한 묻기
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},1);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+//        위치 권한 묻기
+//        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},1);
 
         address_edit= (EditText) findViewById(R.id.address_Edit); //검색어
 //        search= (Button) findViewById(R.id.address_Search); //검색버튼

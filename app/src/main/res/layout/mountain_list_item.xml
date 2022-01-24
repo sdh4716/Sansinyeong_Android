@@ -10,24 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mountain_list_name"
-            android:text="산이름"
-            android:fontFamily="@font/goyang_ilsan_regular"
-            android:textColor="@color/teal_700"
-            android:textSize="20dp"/>
+        android:padding="7dp">
 
         <TextView
+            android:id="@+id/mountain_list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mountain_list_address"
-            android:text="산 주소"
             android:fontFamily="@font/goyang_ilsan_regular"
-            android:textSize="15dp"
-            android:layout_below="@+id/mountain_list_name"/>
+            android:text="산이름"
+            android:textColor="@color/teal_700"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/mountain_list_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mountain_list_name"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="산 주소"
+            android:layout_marginTop="3dp"
+            android:textSize="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

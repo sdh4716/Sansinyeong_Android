@@ -40,7 +40,7 @@ private GoogleSignInClient mGoogleSignInClient;
 
 
 
-    private FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +51,14 @@ private GoogleSignInClient mGoogleSignInClient;
         ComponentName componentName= info.get(0).topActivity;
         ActivityName = componentName.getShortClassName().substring(1).trim();
 
-
-
-
-        Log.d("AcName",ActivityName);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        Log.d("AcName",ActivityName);
 
-        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    }
+
+    public void sidebar_info(){
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseAuth.getCurrentUser().getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

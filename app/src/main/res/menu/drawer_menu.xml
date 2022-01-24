@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/item_hikingsearch"
                 android:icon="@drawable/ic_search2"
-                android:title="등산로 검색" />
+                android:title="산행지 검색" />
 
             <item android:id="@+id/item_notice"
                 android:icon="@drawable/ic_notice"

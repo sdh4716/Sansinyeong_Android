@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.util.Patterns;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.net.URLConnection;
 
 public class Util {
@@ -36,4 +38,5 @@ public class Util {
         String mimeType = URLConnection.guessContentTypeFromName(path);
         return mimeType != null && mimeType.startsWith("video");
     }
+
 }

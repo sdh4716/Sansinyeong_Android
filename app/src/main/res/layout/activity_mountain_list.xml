@@ -10,10 +10,10 @@
 
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_height="600dp"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:layout_centerHorizontal="true">
+        >
 
         <TextView
             android:id="@+id/textView_signUpTitle"
@@ -21,9 +21,17 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/goyang_ilsan_regular"
             android:text="산행지 검색"
+            android:layout_marginTop="20dp"
             android:textColor="@android:color/black"
-            android:textSize="23dp"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="23dp" />
+        <View
+            android:id="@+id/view_below_hashtag"
+            android:layout_width="130dp"
+            android:layout_height="1dp"
+
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/black" />
 
 
         <EditText

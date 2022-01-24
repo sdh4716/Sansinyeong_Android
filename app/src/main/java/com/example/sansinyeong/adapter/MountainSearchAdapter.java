@@ -14,9 +14,6 @@ import com.example.sansinyeong.model.Mountains;
 import java.util.ArrayList;
 
 public class MountainSearchAdapter extends RecyclerView.Adapter<MountainSearchAdapter.MyViewHolder>{
-
-
-
     ArrayList<Mountains> mountainList;
     private OnItemClickListener mListener = null;
 

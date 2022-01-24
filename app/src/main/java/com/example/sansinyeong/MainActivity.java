@@ -146,9 +146,10 @@ public class MainActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
-                Intent intent = new Intent(getApplicationContext(), After_Login.class);
-                Toast.makeText(getApplicationContext(), "구글 로그인 성공", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                firebaseAuth.addAuthStateListener(firebaseAuthListener);
+//                Intent intent = new Intent(getApplicationContext(), After_Login.class);
+//                Toast.makeText(getApplicationContext(), "구글 로그인 성공", Toast.LENGTH_LONG).show();
+//                startActivity(intent);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            //updateUI(user);
+//                            updateUI(user);
 //                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
 
                         } else {

@@ -22,6 +22,7 @@ import com.example.sansinyeong.UserInfoActivity;
 import com.example.sansinyeong.adapter.MountainSearchAdapter;
 import com.example.sansinyeong.adapter.PlanListAdapter;
 import com.example.sansinyeong.model.Plan;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +40,8 @@ public class PlanFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Plan> plans;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private Button btn_add;
+    private DatabaseReference databaseReference ,databaseReference_update;
+    private FloatingActionButton btn_add;
 
     public PlanFragment(){
         // Required empty public constructor
@@ -62,11 +63,12 @@ public class PlanFragment extends Fragment {
         plans = new ArrayList<>(); // Plan 객체를 담을 ArrayList (어댑터 쪽으로)
         planListAdapter = new PlanListAdapter(plans);
         recyclerView.setAdapter(planListAdapter);
-        btn_add = (Button) view.findViewById(R.id.plan_add_btn);
+        btn_add = (FloatingActionButton) view.findViewById(R.id.plan_add_btn);
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("plans");
+        databaseReference_update = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,11 +97,49 @@ public class PlanFragment extends Fragment {
         });
 
 
+        databaseReference_update.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                plans.clear();
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Plan plan = ds.getValue(Plan.class);
+                    plans.add(plan);
+                }
+                planListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                plans.clear();
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Plan plan = ds.getValue(Plan.class);
+                    plans.add(plan);
+                }
+                planListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                plans.clear();
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Plan plan = ds.getValue(Plan.class);
+                    plans.add(plan);
+                }
+                planListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return view;
-
-
-
     }
     @Override
     public void onAttach(Context context) {
@@ -115,5 +155,6 @@ public class PlanFragment extends Fragment {
     public void onPause(){
         super.onPause();
     }
+
 
 }
