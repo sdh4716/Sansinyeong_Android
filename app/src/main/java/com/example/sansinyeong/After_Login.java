@@ -1,7 +1,11 @@
 package com.example.sansinyeong;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.sansinyeong.fragment.HomeFragment;
@@ -57,7 +62,7 @@ public class After_Login extends BaseActivity {
         weatherIcon= findViewById(R.id.weatherIcon); //상태 아이콘이미지
         weatherDesc= findViewById(R.id.weatherDescription); //상태
 
-        init();
+
         sidebar_open();
         menu_select();
         backBtn_action();
@@ -69,6 +74,7 @@ public class After_Login extends BaseActivity {
 
         sidebar_info();
         getCurrentWeather();
+        init();
     }
 
 
@@ -100,10 +106,7 @@ public class After_Login extends BaseActivity {
                 }
             });
         }
-        HomeFragment homeFragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_main, homeFragment)
-                .commit();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -158,14 +161,16 @@ public class After_Login extends BaseActivity {
                 Log.d("Weather", "Success:"+response.body().toString());
                 WeatherResponse weatherResponse= response.body();
 
-                weatherCity.setText(weatherResponse.name);
-                weatherTemp.setText(String.format("%.0f",weatherResponse.main.getTemp())+"°C");
-                weatherDesc.setText(weatherResponse.weather.get(0).getDescription());
-
-                //현재날씨에 대한 이미지 가져오기
-                String ImageUrl= "https://openweathermap.org/img/w/"+weatherResponse.weather.get(0).getIcon()+".png";
-                Log.d("ImageUrl", "onResponse: "+ImageUrl);
-                Glide.with(After_Login.this).load(ImageUrl).into(weatherIcon);
+                HomeFragment homeFragment = new HomeFragment();
+                Bundle data= new Bundle();
+                data.putString("city", weatherResponse.name);
+                data.putString("temp", String.format("%.0f",weatherResponse.main.getTemp())+"°C");
+                data.putString("description", weatherResponse.weather.get(0).getDescription());
+                data.putString("icon", weatherResponse.weather.get(0).getIcon());
+                homeFragment.setArguments(data);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container_main, homeFragment)
+                        .commit();
             }
 
             @Override
@@ -263,4 +268,5 @@ public class After_Login extends BaseActivity {
 
         return weatherXml;//StringBuffer 문자열 객체 반환
     }
+
 }

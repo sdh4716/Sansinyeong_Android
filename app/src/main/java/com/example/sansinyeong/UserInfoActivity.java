@@ -70,7 +70,7 @@ public class UserInfoActivity extends BaseActivity {
                             nameTextView.setText(document.getData().get("name").toString());
                             phoneNumberTextView.setText(document.getData().get("phoneNumber").toString());
                             birthDayTextView.setText(document.getData().get("birthDay").toString());
-                            emailTextView.setText(document.getData().get("email").toString());
+//                            emailTextView.setText(document.getData().get("email").toString());
                         } else {
                             Log.d(TAG, "No such document");
                         }
