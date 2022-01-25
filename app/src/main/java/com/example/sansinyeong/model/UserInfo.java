@@ -9,8 +9,13 @@ public class UserInfo {
     String photoUrl;
     String uid;
     String email;
+    String role;
 
-    public UserInfo(String name, String phoneNumber, String birthDay, String address, String photoUrl, String uid, String email){
+    public UserInfo(){
+
+    };
+
+    public UserInfo(String name, String phoneNumber, String birthDay, String address, String photoUrl, String uid, String email,String role){
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthDay = birthDay;
@@ -18,15 +23,17 @@ public class UserInfo {
         this.photoUrl = photoUrl;
         this.uid = uid;
         this.email = email;
+        this.role = role;
     }
 
-    public UserInfo(String name, String phoneNumber, String birthDay, String address, String uid, String email){
+    public UserInfo(String name, String phoneNumber, String birthDay, String address, String uid, String email,String role){
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthDay = birthDay;
         this.address = address;
         this.uid = uid;
         this.email = email;
+        this.role = role;
     }
 
     public String getName() {
@@ -83,5 +90,13 @@ public class UserInfo {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

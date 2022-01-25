@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -17,8 +18,10 @@ import androidx.core.app.ActivityCompat;
 
 
 import com.bumptech.glide.Glide;
+import com.example.sansinyeong.activity.ChatActivity;
 import com.example.sansinyeong.fragment.HomeFragment;
 import com.example.sansinyeong.fragment.PlanFragment;
+import com.example.sansinyeong.fragment.TalkFragment;
 import com.example.sansinyeong.model.WeatherData;
 import com.example.sansinyeong.model.WeatherXml;
 import com.example.sansinyeong.service.Weather_Service;
@@ -59,13 +62,19 @@ public class After_Login extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                getPlanCount();
+            }
+        },400);
 
         //퍼미션 메세지 권한 허용 여부 확인
 //        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
         //위치 권한 묻기
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},1);
-
-        sidebar_info();
         getCurrentWeather();
         init();
 
@@ -116,12 +125,17 @@ public class After_Login extends BaseActivity {
                                 .replace(R.id.container_main, planFragment)
                                 .commit();
                         return true;
-//                    case R.id.friends:
-//                        UserListFragment userListFragment = new UserListFragment();
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.container, userListFragment)
-//                                .commit();
-//                        return true;
+                    case R.id.nav_chat:
+                        Intent intent1=new Intent(getApplicationContext(), ChatActivity.class);
+                        startActivity(intent1);
+                        return true;
+
+                    case R.id.nav_sanak_talk:
+                        TalkFragment talkFragment = new TalkFragment();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container_main, talkFragment)
+                                .commit();
+                        return true;
                 }
                 return false;
             }

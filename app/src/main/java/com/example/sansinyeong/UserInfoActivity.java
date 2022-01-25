@@ -1,17 +1,21 @@
 package com.example.sansinyeong;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.sansinyeong.model.MountainComment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.w3c.dom.Text;
 
@@ -41,17 +47,25 @@ public class UserInfoActivity extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getPlanCount();
+            }
+        },400);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
 
-        final ImageView profileImageView = findViewById(R.id.profileImageView);
+        ImageView profileImageView = findViewById(R.id.profileImageView);
         final TextView nameTextView = findViewById(R.id.nameTextView);
         final TextView phoneNumberTextView = findViewById(R.id.phoneNumberTextView);
         final TextView birthDayTextView = findViewById(R.id.birthDayTextView);
         final TextView emailTextView = findViewById(R.id.emailTextView);
         final RelativeLayout bookmark_go = findViewById(R.id.rl_user_info_bookmark);
+        final Button profile_edit = findViewById(R.id.btn_profile_edit);
         bookmarkCount = findViewById(R.id.user_info_bookmark_gun);
 
 
@@ -81,6 +95,18 @@ public class UserInfoActivity extends BaseActivity {
             }
         });
 
+        // 댓글 변화를 감지해 리사이클러뷰를 갱신
+        DocumentReference documentReference_update = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        documentReference_update.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Glide.with(getApplicationContext()).load(value.getData().get("photoUrl")).centerCrop().override(500).into(profileImageView);
+                nameTextView.setText(value.getData().get("name").toString());
+                phoneNumberTextView.setText(value.getData().get("phoneNumber").toString());
+                birthDayTextView.setText(value.getData().get("birthDay").toString());
+            }
+        });
+
         bookmark_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +115,17 @@ public class UserInfoActivity extends BaseActivity {
         });
 
         getBookmarkCount();
+
+        profile_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myStartActivity(MemberInitActivity.class);
+            }
+        });
     }
+
+
+
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);

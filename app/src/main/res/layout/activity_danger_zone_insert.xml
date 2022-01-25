@@ -34,30 +34,7 @@
             android:layout_marginBottom="20dp"
             android:background="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/zonepreview"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="위험지역 입력"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -86,15 +63,10 @@
             android:id="@+id/dangerExplanation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="현재에 대한설정"
+            android:hint="현재 상황에 대한 설명"
            />
 
-        <EditText
-            android:id="@+id/dangerNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="기타 정보(번호로 입력)"
-            android:inputType="number"/>
+
 
         <Button
             android:id="@+id/btn_danger"

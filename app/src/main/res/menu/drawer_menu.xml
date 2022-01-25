@@ -21,7 +21,7 @@
                 android:id="@+id/item_hikingsearch"
                 android:title="산행지 검색" />
 
-            <item android:id="@+id/item_notice"
+            <item android:id="@+id/item_noticemenu"
                 android:title="공지사항"/>
 
             <item

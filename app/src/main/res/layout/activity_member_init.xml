@@ -5,29 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MemberInitActivity">
+    tools:context=".MemberInitActivity"
+    android:layout_marginTop="40dp">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical">
+            android:layout_width="350dp"
+            android:layout_height="600dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="회원정보"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/goyang_ilsan_regular"/>
+                android:id="@+id/textView_signUpTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/goyang_ilsan_regular"
+                android:text="회원 정보"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <View
+                android:id="@+id/view_below_hashtag"
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textView_signUpTitle"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,9 +44,9 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="20dp"
                     app:cardCornerRadius="100dp">
 
                     <ImageView
@@ -53,24 +61,30 @@
                     android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="이름"
                     android:fontFamily="@font/goyang_ilsan_regular"
+                    android:hint="이름"
                     android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="전화번호"
                     android:fontFamily="@font/goyang_ilsan_regular"
+                    android:hint="전화번호"
                     android:inputType="phone" />
 
                 <EditText
                     android:id="@+id/birthDayEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:fontFamily="@font/goyang_ilsan_regular"
                     android:hint="생년월일"
@@ -80,17 +94,21 @@
                     android:id="@+id/addressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="주소"
                     android:fontFamily="@font/goyang_ilsan_regular"
+                    android:hint="주소"
                     android:inputType="textPostalAddress" />
 
                 <Button
                     android:id="@+id/checkButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="확인"
-                    android:fontFamily="@font/goyang_ilsan_regular"/>
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/goyang_ilsan_regular"
+                    android:text="확인" />
 
             </LinearLayout>
         </LinearLayout>

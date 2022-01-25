@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -20,12 +21,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.sansinyeong.activity.Notice_Activity;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,8 +47,9 @@ private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
 
     NavigationView NavView;
-
+    private FirebaseUser user;
     FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +60,21 @@ private GoogleSignInClient mGoogleSignInClient;
         List<ActivityManager.RunningTaskInfo> info = manager.getRunningTasks(1);
         ComponentName componentName= info.get(0).topActivity;
         ActivityName = componentName.getShortClassName().substring(1).trim();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        Log.d("AcName",ActivityName);
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
-//        DrawerLayout drawerLayout = findViewById(R.id.drawer);
-//        NavView = findViewById(R.id.nav_view);
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sidebar_info();
+            }
+        },400);
 
-//        if (firebaseAuth.getCurrentUser().getUid().equals("y7w9lcQ27ASPADsbcG1egJQnlZz1")){
-//            NavView.findViewById(R.id.item_dangerInsert)
-//        }else{
-//            NavView.findViewById(R.id.item_dangerInsert).setVisibility(View.GONE);
-//        }
+
+
     }
 
     public void sidebar_info(){
@@ -136,7 +148,7 @@ private GoogleSignInClient mGoogleSignInClient;
                                 drawerLayout.closeDrawer(Gravity.RIGHT);
                                 break;
                             }
-                            case "MyPage":{
+                            case "UserInfoActivity":{
                                 Toast.makeText(getApplicationContext(), "현재 페이지입니다", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -178,28 +190,34 @@ private GoogleSignInClient mGoogleSignInClient;
                     }
 
                     case R.id.item_dangerInsert: {
-                        //String의 비교는 .equals!!!!!! ==이랑 헷갈리지 말자!!!
-                        switch (ActivityName){
-                            case "After_Login":{
-                                Intent intent = new Intent(getApplicationContext(), DangerZoneInert.class);
-                                startActivity(intent);
-                                drawerLayout.closeDrawer(Gravity.RIGHT);
-                                break;
-                            }
-                            case "My_Location":{
-                                Toast.makeText(getApplicationContext(), "현재 페이지입니다", Toast.LENGTH_SHORT).show();
-                                break;
-                            }
+                        if (firebaseAuth.getCurrentUser().getUid().equals("y7w9lcQ27ASPADsbcG1egJQnlZz1")){
+                            //String의 비교는 .equals!!!!!! ==이랑 헷갈리지 말자!!!
+                            switch (ActivityName){
+                                case "After_Login":{
+                                    Intent intent = new Intent(getApplicationContext(), DangerZoneInert.class);
+                                    startActivity(intent);
+                                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                                    break;
+                                }
+                                case "DangerZoneInert":{
+                                    Toast.makeText(getApplicationContext(), "현재 페이지입니다", Toast.LENGTH_SHORT).show();
+                                    break;
+                                }
 
-                            default: {
-                                Intent intent = new Intent(getApplicationContext(), DangerZoneInert.class);
-                                startActivity(intent);
-                                drawerLayout.closeDrawer(Gravity.RIGHT);
-                                break;
+                                default: {
+                                    Intent intent = new Intent(getApplicationContext(), DangerZoneInert.class);
+                                    startActivity(intent);
+                                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                                    break;
+                                }
                             }
+                            break;
+                        }else{
+                            Toast.makeText(getApplicationContext(), "관리자 메뉴입니다", Toast.LENGTH_SHORT).show();
+                            break;
                         }
 
-                        break;
+
                     }
 
                     case R.id.item_hikingsearch: {
@@ -233,7 +251,10 @@ private GoogleSignInClient mGoogleSignInClient;
                         startActivity(intent);
                         break;
                     }
-                    case R.id.item_notice: {
+                    case R.id.item_noticemenu: {
+                        Intent intent=new Intent(getApplicationContext(), Notice_Activity.class);
+                        startActivity(intent);
+                        break;
 
 
                     }
@@ -283,5 +304,21 @@ private GoogleSignInClient mGoogleSignInClient;
         }else{
             super.onBackPressed();
         }
+    }
+
+    public void getPlanCount(){
+        DatabaseReference databaseReference_getPlanCount = firebaseDatabase.getReference().child("users").child(user.getUid()).child("plans");
+        databaseReference_getPlanCount.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                TextView sidebarPlanCount = findViewById(R.id.sidebar_plan_count);
+                sidebarPlanCount.setText(String.valueOf(snapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -65,6 +65,13 @@
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_community_good_off" />
+
+                    <ImageView
+                        android:id="@+id/btn_recommend_add"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_plus"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
 

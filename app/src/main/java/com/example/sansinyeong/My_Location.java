@@ -255,14 +255,10 @@ public class My_Location extends BaseActivity implements OnMapReadyCallback, Act
                     MarkerOptions makerFire = new MarkerOptions();
                     makerFire // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
                             .position(fire)
-                            .title(dangers.get(i).getLocationName())
-                            .snippet("위험지역!!!"); // 타이틀.
+                            .title(dangers.get(i).getLocationName()) // 타이틀.
+                            .snippet(dangers.get(i).getExplanation());  // 현재 위험지역대한 설명.
                     makerFire.icon(BitmapDescriptorFactory.fromBitmap(fireMarker));
                     mMap.addMarker(makerFire);
-//                    MyCluster myCluster = new MyCluster(dangers.get(i).getLatitude(), dangers.get(i).getLongitude(),
-//                            dangers.get(i).getLocationName(), String.valueOf(dangers.get(i).getNumber()));
-//                    clusterManager.setAnimation(false);
-//                    clusterManager.addItem(myCluster);
                 }
             }
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.sansinyeong.camera.CameraActivity;
@@ -22,6 +23,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,11 +45,18 @@ public class MemberInitActivity extends BaseActivity {
     private RelativeLayout buttonBackgroundLayout;
     private String profilePath;
     private FirebaseUser user;
+    private EditText name, phone, birthday, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_init);
+
+        sidebar_open();
+        menu_select();
+        backBtn_action();
+        getPlanCount();
+
 
         loaderLayout = findViewById(R.id.loaderLyaout);
         profileImageVIew = findViewById(R.id.profileImageView);
@@ -58,6 +68,12 @@ public class MemberInitActivity extends BaseActivity {
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
         findViewById(R.id.picture).setOnClickListener(onClickListener);
         findViewById(R.id.gallery).setOnClickListener(onClickListener);
+        name = findViewById(R.id.nameEditText);
+        phone = findViewById(R.id.phoneNumberEditText);
+        birthday = findViewById(R.id.birthDayEditText);
+        address = findViewById(R.id.addressEditText);
+        init();
+
     }
 
     @Override
@@ -111,6 +127,7 @@ public class MemberInitActivity extends BaseActivity {
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        final String role = "0";
 
         if (name.length() > 0 && phoneNumber.length() > 9 && birthDay.length() > 5 && address.length() > 0) {
             loaderLayout.setVisibility(View.VISIBLE);
@@ -120,7 +137,7 @@ public class MemberInitActivity extends BaseActivity {
             final StorageReference mountainImagesRef = storageRef.child("users/" + user.getUid() + "/profileImage.jpg");
 
             if (profilePath == null) {
-                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, uid ,email);
+                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, uid ,email, role);
                 storeUploader(userInfo);
             } else {
                 try {
@@ -139,7 +156,7 @@ public class MemberInitActivity extends BaseActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-                                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, downloadUri.toString(), uid, email);
+                                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, address, downloadUri.toString(), uid, email,"0");
                                 storeUploader(userInfo);
                             } else {
                                 showToast(MemberInitActivity.this, "회원정보를 보내는데 실패하였습니다.");
@@ -179,5 +196,35 @@ public class MemberInitActivity extends BaseActivity {
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivityForResult(intent, 0);
+    }
+
+    private void init() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(firebaseUser.getUid());
+
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null) {
+                            if (document.exists()) {
+                                name.setText(document.getData().get("name").toString());
+                                birthday.setText(document.getData().get("birthDay").toString());
+                                address.setText(document.getData().get("address").toString());
+                                phone.setText(document.getData().get("phoneNumber").toString());
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.d(TAG, "No such document");
+                                showToast(MemberInitActivity.this,"회원정보가 없습니다. 회원정보를 작성해주세요");
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+
     }
 }

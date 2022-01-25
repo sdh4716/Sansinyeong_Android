@@ -28,10 +28,11 @@ import java.util.ArrayList;
 public class MountainListActivity extends BaseActivity {
     RecyclerView recyclerView;
     private ArrayList<Mountains> mountains_List;
+    Mountains mountain;
     private FirebaseFirestore firebaseFirestore;
     MountainSearchAdapter mountainSearchAdapter;
     private EditText mountain_search;
-    Mountains mountain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class MountainListActivity extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        getPlanCount();
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.activity_mountainList_recyclerView);

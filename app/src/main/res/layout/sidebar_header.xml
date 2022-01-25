@@ -1,5 +1,5 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drw_sidebar"
     android:layout_width="match_parent"
     android:layout_height="250dp"
@@ -9,14 +9,21 @@
     android:background="#008C8C">
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="100dp">
     <ImageView
         android:id="@+id/header_profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/no_profile"
-        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
         android:layout_marginBottom="15dp"
         />
+    </androidx.cardview.widget.CardView>
 
 
     <LinearLayout
@@ -76,27 +83,27 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="30dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="13dp"
-                android:textColor="@color/white"
-                android:text="알림"/>
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_weight="1">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="1"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="30dp"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textSize="13dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:text="알림"/>-->
+<!--        </LinearLayout>-->
     </LinearLayout>
 
 </LinearLayout>

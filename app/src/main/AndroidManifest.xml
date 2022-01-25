@@ -78,9 +78,18 @@
         <activity
             android:name=".HikingPlanActivity"
             android:exported="false" />
-        <activity
-            android:name=".MyPage"
-            android:exported="false" />
+        <activity android:name=".activity.ChatActivity"
+            android:exported="false"/>
+        <activity android:name=".activity.Notice_Activity"
+            android:exported="false"/>
+        <activity android:name=".activity.Noticepost_Activity"
+            android:exported="false"/>
+        <activity android:name=".activity.TalkActivity"
+            android:exported="false"/>
+        <activity android:name=".activity.WriteTalkActivity"
+            android:exported="false"/>
+        <activity android:name=".GalleryActivity"
+            android:exported="false"/>
 
         <service
             android:name=".service.MyFirebaseMessagingService"

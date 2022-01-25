@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -54,6 +55,13 @@ public class MountainBookmarkActivity extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getPlanCount();
+            }
+        },400);
 
         recyclerViewInitSetting();
         firebaseDatabase = FirebaseDatabase.getInstance();

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="270dp"
+    android:orientation="horizontal"
+    android:background="@drawable/shadow_xsm"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_user_item"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+            <ImageView
+                android:id="@+id/recommend_img"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/img_product"
+                android:scaleType="fitXY"/>
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/recommend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="oo산"
+            android:layout_gravity="center"
+            android:textColor="@color/teal_700"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/recommend_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="1923m"
+            android:layout_gravity="center"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/recommend_feature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:text="이 산은 이러쿵 저러쿵 뭐가 많고 재미있고 높으며 산신령이 살고있다"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/m_comment_star"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginRight="4dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="5.0"-->
+<!--            android:textColor="@color/colorWhiteBlue"-->
+<!--            android:textSize="25dp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/mountain_list_feature"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="15dp"-->
+<!--            android:text="산 특징"/>-->
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.example.sansinyeong;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,6 +41,7 @@ import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import static com.example.sansinyeong.Util.showToast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HikingPlanActivity extends BaseActivity {
@@ -72,6 +74,14 @@ public class HikingPlanActivity extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getPlanCount();
+            }
+        },400);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         btn_add = findViewById(R.id.btn_add_plan);
@@ -147,6 +157,7 @@ public class HikingPlanActivity extends BaseActivity {
             @Override
             public void onRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
                 String startDate, endDate;
+
                 startDate = dates.get(0).toString();
                 endDate = dates.get(dates.size()-1).toString();
                 plan_start.setText(startDate.replace("CalendarDay","").replace("{","").replace("}",""));

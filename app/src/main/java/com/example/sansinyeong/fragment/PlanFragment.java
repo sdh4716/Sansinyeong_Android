@@ -3,6 +3,7 @@ package com.example.sansinyeong.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,23 +71,30 @@ public class PlanFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("plans");
         databaseReference_update = firebaseDatabase.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                plans.clear();
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    Plan plan = ds.getValue(Plan.class);
-                    plans.add(plan);
-                }
-                planListAdapter.notifyDataSetChanged();
-            }
+            public void run() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        plans.clear();
+                        for(DataSnapshot ds : snapshot.getChildren()){
+                            Plan plan = ds.getValue(Plan.class);
+                            plans.add(plan);
+                        }
+                        planListAdapter.notifyDataSetChanged();
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // 디비를 가져오던중 에러 발생 시
-                Log.e("Fraglike", String.valueOf(error.toException())); // 에러문 출력
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // 디비를 가져오던중 에러 발생 시
+                        Log.e("Fraglike", String.valueOf(error.toException())); // 에러문 출력
+                    }
+                });
+
             }
-        });
+        },400);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override

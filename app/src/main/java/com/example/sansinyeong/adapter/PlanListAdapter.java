@@ -21,6 +21,7 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
 
     ArrayList<Plan> planList;
     Long dday;
+    Plan plan;
 
     public PlanListAdapter(ArrayList<Plan> planList){
         this.planList = planList;
@@ -59,10 +60,12 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = sdf.format(date);
         Date getTime_date = sdf.parse(getTime);
-        String startDate = plan.getStartdate();
-        Date startDate_date = sdf.parse(startDate);
-        long calDate = startDate_date.getTime() - getTime_date.getTime();
-        Long dday = calDate / (24*60*60*1000);
+
+        if (plan.getStartdate() != null){
+            String startDate = plan.getStartdate();
+            Date startDate_date = sdf.parse(startDate);
+            long calDate = startDate_date.getTime() - getTime_date.getTime();
+            Long dday = calDate / (24*60*60*1000);
             if (dday < 0){
                 holder.dDay.setText("day가 지났습니다");
                 holder.dDay.setTextColor(0xAAef484a);
@@ -74,6 +77,8 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
             }else{
                 holder.dDay.setText(dday.toString());
             }
+        }
+
         }catch (ParseException e){
 
         }

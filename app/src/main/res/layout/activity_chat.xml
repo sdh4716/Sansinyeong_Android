@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.ChatActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TTTTTTTTTTT"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모두의 채팅방"
+            android:textSize="24sp"
+            android:id="@+id/texttitle"
+            android:fontFamily="@font/goyang_ilsan_regular"
+            android:textColor="@color/teal_700"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/TTTTTTTTTTT"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listlinear"
+            android:layout_below="@+id/texttitle">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/comment_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/listlinear"
+            android:layout_marginTop="20dp"
+            android:weightSum="1.0">
+
+            <EditText
+                android:id="@+id/chat_editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:hint="Write a text..."
+                android:layout_marginLeft="10dp"
+                android:maxLines="1" />
+
+            <Button
+                android:id="@+id/chat_button"
+
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Post"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

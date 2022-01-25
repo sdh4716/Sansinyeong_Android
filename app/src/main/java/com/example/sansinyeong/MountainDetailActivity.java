@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class MountainDetailActivity extends BaseActivity {
-    ImageView img_1, img_2, img_3 ,img_chosen, bookmark;
+    ImageView img_1, img_2, img_3 ,img_chosen, bookmark, btn_recommend;
     FirebaseStorage storage;
     StorageReference storageReference;
     String m_img1, m_img2, m_img3, uri1, uri2, uri3, current_user_name, flag, m_addr, m_featrue;
@@ -78,6 +79,13 @@ public class MountainDetailActivity extends BaseActivity {
         sidebar_open();
         menu_select();
         backBtn_action();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getPlanCount();
+            }
+        },400);
         D_context = this;
 
 
@@ -104,6 +112,7 @@ public class MountainDetailActivity extends BaseActivity {
         img_1 = findViewById(R.id.mountain_detail_img1);
         img_2 = findViewById(R.id.mountain_detail_img2);
         img_3 = findViewById(R.id.mountain_detail_img3);
+        btn_recommend = findViewById(R.id.btn_recommend_add);
         detail_name.setText(m_name);
         detail_height.setText(m_height.toString());
         detail_address.setText(m_addr);
@@ -139,6 +148,7 @@ public class MountainDetailActivity extends BaseActivity {
         });
 
         bookmark_check();
+        adminChk();
 
 
 
@@ -255,6 +265,13 @@ public class MountainDetailActivity extends BaseActivity {
                     showToast(MountainDetailActivity.this,"북마크에서 제거되었습니다.");
                 }
 
+            }
+        });
+
+        btn_recommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_recommend(m_name,m_addr,m_height,m_featrue,m_img1,m_img2,m_img3);
             }
         });
 
@@ -383,5 +400,17 @@ public class MountainDetailActivity extends BaseActivity {
         mountainCommentAdapter = new MountainCommentAdapter(mountainComments);
         recyclerView.setAdapter(mountainCommentAdapter);
 
+    }
+
+    public void adminChk(){
+        if (firebaseAuth.getCurrentUser().getUid().equals("y7w9lcQ27ASPADsbcG1egJQnlZz1")){
+    btn_recommend.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void add_recommend(String name, String address, Long height, String feature, String img1, String img2, String img3){
+
+        Mountains mountains = new Mountains(name,address,height,feature,img1,img2,img3);
+        databaseReference_bookmark.child("mountain_recommend").child(m_name).setValue(mountains);
     }
 }

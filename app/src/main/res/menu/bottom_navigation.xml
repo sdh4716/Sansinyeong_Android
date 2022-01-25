@@ -13,9 +13,9 @@
 
 
     <item
-        android:id="@+id/nav_friends"
+        android:id="@+id/nav_chat"
         android:icon="@drawable/ic_friend"
-        android:title="친구" />
+        android:title="채팅" />
 
     <item
         android:id="@+id/nav_sanak_talk"

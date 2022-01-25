@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Noticepost_Activity"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/comment_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lastlayout"
+            android:orientation="horizontal"
+
+            android:weightSum="1.0">
+
+            <EditText
+                android:id="@+id/notice_title_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.8"
+                android:hint="공지사항 제목"
+                android:fontFamily="@font/goyang_ilsan_regular"
+                android:maxLines="1" />
+
+            <Button
+                android:id="@+id/notice_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.2"
+                android:text="등록"
+                android:fontFamily="@font/goyang_ilsan_regular"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/notice_content_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="content"
+        android:background="@null"/>
+
+
+
+
+
+
+</LinearLayout>
